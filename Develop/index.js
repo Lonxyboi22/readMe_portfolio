@@ -1,7 +1,9 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generatePage = require('./utils/generateMarkdown.js');
 
-// TODO: Create an array of questions for user input
+//prompts user for info then project info!
 const promptUser = () => {
   return inquirer.prompt([
     {
@@ -52,12 +54,6 @@ Add a New Project
     },
     {
       type: 'confirm',
-      name: 'feature',
-      message: 'Would you like to feature this project?',
-      default: false
-    },
-    {
-      type: 'confirm',
       name: 'confirmAddProject',
       message: 'Would you like to enter another project?',
       default: false
@@ -72,10 +68,19 @@ promptUser()
 
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data, projectdata) {
+  pageREADME = generatePage(data, projectdata);
 
+  fs.writeFile('README.md', pageREADME, err => {
+      if (err) throw new Error(err);
+      console.log('ReadMe complete! Check out README.md to see the output!');
+});
+}
+writeToFile(answers, projectAnswers);
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+ 
+}
 
 // Function call to initialize app
 init();

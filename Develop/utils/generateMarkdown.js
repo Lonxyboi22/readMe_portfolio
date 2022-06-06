@@ -11,9 +11,22 @@ function renderLicenseLink(license) {}
 function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
+function generateMarkdown(data, projectdata) {
+  return `# ${projectdata.title}
 
+  ### ${projectdata.description}
+  In short, this is a very cool project!
+
+  Some languages used to write the aformentioned project are:
+  *${projectdata.languages}
+
+
+
+
+
+  ## This project is by: ${data.name}
+  ${data.name} description: ${data.about}.
+  You can find this project in their Github [Here](https://github.com/${data.github}/). 
 `;
 }
 
