@@ -8,6 +8,48 @@ const promptUser = () => {
   return inquirer.prompt([
     {
       type: 'input',
+      name: 'title',
+      message: 'What is the title of your project? (Required)',
+      //validate response:
+      validate: (value)=> {if(value) {return true} else {return 'I need a title to continue!'}}
+    },
+    {
+      type: 'input',
+      name: 'description',
+      message: 'Provide a description of the project (Required)',
+       //validate response:
+       validate: (value)=> {if(value) {return true} else {return 'I need a project description to continue!'}}
+    },
+    {
+      type: 'input',
+      name: 'installation',
+      message: 'how do you install your app?'
+    },
+    {
+      type: 'input',
+      message: 'What instructions do you have to install the app?',
+      name: 'instructions'
+    },
+    {
+      type: 'input',
+      message: 'What instructions do you have on using your app?',
+      name: 'usage'
+    },
+    {
+      type: 'checkbox',
+      name: 'languages',
+      message: 'What did you build this project with? (Check all that apply)',
+      choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
+    },
+    {
+      type: 'input',
+      name: 'links',
+      message: 'Enter the GitHub link to your project. (Required)',
+       //validate response:
+       validate: (value)=> {if(value) {return true} else {return 'I need a link to continue!'}}
+    },
+    {
+      type: 'input',
       name: 'name',
       message: 'What is your name?'
     },
@@ -24,63 +66,21 @@ const promptUser = () => {
   ]);
 };
 
-const promptProject = () => {
-  console.log(`
-=================
-Add a New Project
-=================
-`);
-  return inquirer.prompt([
-    {
-      type: 'input',
-      name: 'name',
-      message: 'What is the name of your project?'
-    },
-    {
-      type: 'input',
-      name: 'description',
-      message: 'Provide a description of the project (Required)'
-    },
-    {
-      type: 'checkbox',
-      name: 'languages',
-      message: 'What did you build this project with? (Check all that apply)',
-      choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
-    },
-    {
-      type: 'input',
-      name: 'link',
-      message: 'Enter the GitHub link to your project. (Required)'
-    },
-    {
-      type: 'confirm',
-      name: 'confirmAddProject',
-      message: 'Would you like to enter another project?',
-      default: false
-    }
-  ]);
-};
-
 promptUser()
-  .then(answers => console.log(answers))
-  .then(promptProject)
-  .then(projectAnswers => console.log(projectAnswers));
+  .then((data => {
+    const pageREADME = generatePage(data);
+
+    fs.writeFile('./README.md', pageREADME, err => {
+        if (err) throw new Error(err);
+        console.log('ReadMe complete! Check out README.md to see the output!');
+  });
+  }));
 
 
-// TODO: Create a function to write README file
-function writeToFile(data, projectdata) {
-  pageREADME = generatePage(data, projectdata);
-
-  fs.writeFile('README.md', pageREADME, err => {
-      if (err) throw new Error(err);
-      console.log('ReadMe complete! Check out README.md to see the output!');
-});
-}
-writeToFile(answers, projectAnswers);
 // TODO: Create a function to initialize app
-function init() {
+// function init() {
  
-}
+// }
 
 // Function call to initialize app
-init();
+// init();
