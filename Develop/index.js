@@ -23,12 +23,14 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'installation',
-      message: 'how do you install your app?'
+      message: 'How do you install your app?',
+      //validate:
+      validate: (value)=> {if(value) {return true} else {return 'I need the installation instructions to continue!'}}
     },
     {
       type: 'input',
-      message: 'What instructions do you have to install the app?',
-      name: 'instructions'
+      name: 'instructions',
+      message: 'What instructions do you have to install the app?'
     },
     {
       type: 'input',
@@ -49,6 +51,14 @@ const promptUser = () => {
        validate: (value)=> {if(value) {return true} else {return 'I need a link to continue!'}}
     },
     {
+      type: 'list',
+      name: 'license',
+      message: 'What kind of license did you use? (Required)',
+      choices: ['The MIT License', 'The GPL License', 'Apache License', 'GNU License', 'N/A'],
+       //validate response:
+       validate: (value)=> {if(value) {return true} else {return 'I need a link to continue!'}}
+    },
+    {
       type: 'input',
       name: 'name',
       message: 'What is your name?'
@@ -57,6 +67,16 @@ const promptUser = () => {
       type: 'input',
       name: 'github',
       message: 'Enter your GitHub Username'
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'What is your email?'
+    },
+    {
+      type: 'input',
+      name: 'phone',
+      message: 'What is your phone number?'
     },
     {
       type: 'input',

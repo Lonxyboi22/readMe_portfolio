@@ -20,7 +20,7 @@ function generateMarkdown(data) {
   ### ${data.description}
   In short, this is a very cool project!
 
-  ### Languages used:
+  ## Languages used:
   Some languages used to write the aformentioned project are:
   *${data.languages}
 
@@ -34,14 +34,19 @@ function generateMarkdown(data) {
   ${data.usage}
 
   ## Need more details?
-   
+
   ### You can look at this project in more detail using the github link below!
   ### ${data.links}
 
 
   ## This project is by: ${data.name}
   ${data.name}'s description: ${data.about}.
-  You can find this project in their Github [Here](https://github.com/${data.github}/). 
+
+  ## Qurestions?
+  You can find this project in ${data.name}'s Github [Here](https://github.com/${data.github}/).
+  If you would like to contact for more information please use the email or phone number below:
+  ${data.email}
+  ${data.phone}
 `;
 }
 
