@@ -33,6 +33,10 @@ function generateMarkdown(data) {
   ## How do I use the app?
   ${data.usage}
 
+  ## Licenses:
+  ###${license}
+  
+
   ## Need more details?
 
   ### You can look at this project in more detail using the github link below!
