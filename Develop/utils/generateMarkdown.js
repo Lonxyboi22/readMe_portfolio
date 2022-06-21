@@ -34,8 +34,8 @@ function generateMarkdown(data) {
   ${data.usage}
 
   ## Licenses:
-  ###${license}
-  
+  ###${data.license}
+
 
   ## Need more details?
 
